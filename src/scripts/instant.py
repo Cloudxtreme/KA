@@ -2,21 +2,24 @@
 
 import json
 import sys
+import re
 from request import request
 
 def instant(term):
-	resp = json.loads(request('http://api.duckduckgo.com/', data={
+	resp = json.loads(re.compile('^DDG.duckbar.add_array\(|\);$').sub('', request('https://duckduckgo.com/a.js', data={
 		'q' : term,
-		'format' : 'json',
-		'noredirect' : '1',
 		'no_html' : '1',
 		'skip_disambig' : '1'
-		}).read().decode())
+		}).read().decode()))
+
+	if not resp:
+		return print("I don't think that is a valid question :/")
 	
-	if (not resp['Heading']):
-		return print("Couldn't find {}", resp)
-	print("{Heading} | (category: {Entity})".format(Heading=resp['Heading'], Entity=resp['Entity']))
-	print(resp['AbstractText'])
-	print("From {AbstractSource}. Read more at {AbstractURL}".format(AbstractSource=resp['AbstractSource'], AbstractURL=resp['AbstractURL']))
+	data = resp[0]['data']
+	for result in data:
+		print(result['heading'])
+		print(result['abstract'])
+		print("Source: {source} | Read more at {url}".format(source=result['source'], url=result['url']))
+
 
 instant(' '.join(sys.argv[1:]))
