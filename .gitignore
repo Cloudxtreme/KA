@@ -1,2 +1,5 @@
 *~
 play/
+*.sublime-project
+*.sublime-workspace
+src/scripts/__pycache__/

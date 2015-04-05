@@ -1,0 +1,17 @@
+{
+	"Window#main": {
+		"sensitive": true,
+		"children": {
+			"Box#searchPanel": {
+				"children": {
+					"Entry#search": {
+						"placeholder_text": "soooooo good!"
+					}
+				}
+			}
+		},
+		"signals": {
+			"delete-event": "onDeleteWindow"
+		}
+	}
+}

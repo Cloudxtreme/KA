@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<interface>
+    <object class="GtkWindow" id="main">
+        <property name="sensitive">true</property>
+        <signal name="delete-event" handler="onDeleteWindow" />
+        <child>
+            <object class="GtkBox" id="searchPanel">
+                <child>
+                    <object class="GtkEntry" id="search">
+                        <property name="placeholder_text">soooooo good!</property>
+                    </object>
+                </child>
+            </object>
+        </child>
+    </object>
+</interface>
