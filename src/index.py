@@ -1,7 +1,7 @@
 from gi.repository import Gtk, Gdk, GdkPixbuf
 from pprint import pprint
 from routeCmd import fetchResponse
-import urllib
+from urllib.request import urlopen
 
 ENTER_KEY = 65288
 
@@ -36,7 +36,7 @@ class GideonUI(Gtk.Window):
 		if not image:
 			UI.el("image").hide()
 		else:
-			imageData = urllib.urlopen(image)
+			imageData = urlopen(image)
 			loader = GdkPixbuf.PixbufLoader()
 			loader.write(imageData.read())
 			loader.close()
