@@ -1,8 +1,5 @@
 import random
 import re
-# import sys
-# sys.path.append('scripts')
-# import scripts
 import imp
 
 SYSTEM_CMD_PREFIX = '!!'
@@ -61,7 +58,7 @@ AddCmd.system('listcommands', '^listcommands$', 'listcommands')
 
 def fetchResponse(cmd = ''):
 	if not cmd:
-		return random.choice(emptyAnswers)
+		return {'description': random.choice(emptyAnswers)}
 
 	if (cmd.startswith(SYSTEM_CMD_PREFIX)):
 		# load from system command whateva
