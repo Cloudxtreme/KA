@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.18.3 -->
+<interface>
+<!--  <requires lib="gtk+" version="3.12"/> -->
+  <object class="GtkEntryCompletion" id="entrycompletion1">
+    <property name="text_column">3</property>
+    <property name="inline_completion">True</property>
+    <property name="popup_single_match">False</property>
+    <property name="inline_selection">True</property>
+  </object>
+  <object class="GtkWindow" id="Window">
+    <property name="can_focus">False</property>
+    <property name="title" translatable="yes">Gideon</property>
+    <!-- <property name="resizable">False</property> -->
+    <property name="decorated">False</property>
+    <signal name="delete-event" handler="exit"/>
+    <child>
+      <object class="GtkGrid" id="grid">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="margin_left">5</property>
+        <property name="margin_right">5</property>
+        <property name="margin_top">5</property>
+        <property name="margin_bottom">5</property>
+        <child>
+          <object class="GtkBox" id="cmdBox">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkEntry" id="cmd">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="width_chars">45</property>
+                <property name="caps_lock_warning">False</property>
+                <property name="placeholder_text" translatable="yes">Enter command here...</property>
+                <property name="completion">entrycompletion1</property>
+                <property name="input_hints">GTK_INPUT_HINT_NO_SPELLCHECK | GTK_INPUT_HINT_NONE</property>
+                <signal name="activate" handler="processCmd" swapped="no"/>
+                <style>
+                  <class name="input"/>
+                  <class name="cmdBox"/>
+                  <class name="textInput"/>
+                </style>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSpinner" id="processing">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <style>
+                  <class name="icon"/>
+                  <class name="spinner"/>
+                </style>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <style>
+              <class name="cmdBox"/>
+              <class name="inputBox"/>
+              <class name="widget"/>
+              <class name="gridBox"/>
+            </style>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkExpander" id="History">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="expanded">True</property>
+            <property name="label_fill">True</property>
+            <property name="resize_toplevel">True</property>
+            <child>
+              <placeholder/>
+            </child>
+            <child type="label">
+              <object class="GtkLabel" id="historyLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="xalign">0</property>
+                <property name="xpad">5</property>
+                <property name="label" translatable="yes">History</property>
+                <property name="justify">right</property>
+                <property name="ellipsize">end</property>
+                <style>
+                  <class name="widgetLabel"/>
+                </style>
+              </object>
+            </child>
+            <style>
+              <class name="widget"/>
+              <class name="gridBox"/>
+              <class name="historyContainer"/>
+            </style>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox" id="result">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkLabel" id="heading">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="xalign">0</property>
+                <property name="xpad">5</property>
+                <property name="label" translatable="yes">Info</property>
+                <style>
+                  <class name="heading"/>
+                  <class name="info"/>
+                  <class name="label"/>
+                </style>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkBox" id="content">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <child>
+                  <object class="GtkImage" id="image">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="stock">gtk-justify-fill</property>
+                    <style>
+                      <class name="resultImage"/>
+                      <class name="image"/>
+                      <class name="graphic"/>
+                    </style>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="description">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="xalign">0</property>
+                    <property name="xpad">5</property>
+                    <property name="label" translatable="yes">Description</property>
+                    <style>
+                      <class name="contentInfo"/>
+                      <class name="resultText"/>
+                    </style>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+                <style>
+                  <class name="contentWrapper"/>
+                  <class name="content"/>
+                </style>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLinkButton" id="outlink">
+                <property name="label" translatable="yes">Read more...</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="relief">none</property>
+                <property name="xalign">0.05000000074505806</property>
+                <property name="uri">http://example.com</property>
+                <style>
+                  <class name="label"/>
+                  <class name="link"/>
+                  <class name="outlink"/>
+                </style>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <style>
+              <class name="widget"/>
+              <class name="gridBox"/>
+              <class name="resultWrapper"/>
+            </style>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox" id="status">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="spacing">5</property>
+            <property name="homogeneous">True</property>
+            <child>
+              <object class="GtkLabel" id="clock">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">12:00 AM</property>
+                <style>
+                  <class name="label"/>
+                  <class name="clock"/>
+                  <class name="statusLabel"/>
+                </style>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="statusInfo">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">All ok!</property>
+                <style>
+                  <class name="statusLabel"/>
+                  <class name="statusInfo"/>
+                </style>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="statusNudges">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="xalign">0</property>
+                <property name="label" translatable="yes">3 nudges registered</property>
+                <property name="ellipsize">end</property>
+                <style>
+                  <class name="statusLabel"/>
+                  <class name="statusNudges"/>
+                </style>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <style>
+              <class name="statusBar"/>
+              <class name="status"/>
+            </style>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">3</property>
+          </packing>
+        </child>
+        <style>
+          <class name="body"/>
+          <class name="grid"/>
+          <class name="wrapper"/>
+        </style>
+      </object>
+    </child>
+    <style>
+      <class name="window"/>
+      <class name="main"/>
+      <class name="app"/>
+    </style>
+  </object>
+</interface>

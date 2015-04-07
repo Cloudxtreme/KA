@@ -6,6 +6,23 @@
 				"children": {
 					"Entry#search": {
 						"placeholder_text": "soooooo good!"
+					},
+					"Button#searchButton": {
+						"signals": {
+							"clicked": "search"
+						},
+						"children": {
+							"Label#searchLabel": {
+								"label": "Search"
+							}
+						}
+					},
+					"Box#results": {
+						"children": {
+							"Label#resultMarkup": {
+								"label": "Results here..."
+							}
+						}
 					}
 				}
 			}
