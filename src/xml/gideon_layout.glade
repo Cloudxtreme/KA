@@ -2,26 +2,30 @@
 <!-- Generated with glade 3.18.3 -->
 <interface>
 <!--  <requires lib="gtk+" version="3.12"/> -->
-  <object class="GtkEntryCompletion" id="entrycompletion1">
+  <!-- <object class="GtkEntryCompletion" id="entrycompletion1">
     <property name="text_column">3</property>
     <property name="inline_completion">True</property>
     <property name="popup_single_match">False</property>
     <property name="inline_selection">True</property>
-  </object>
+  </object> -->
   <object class="GtkWindow" id="Window">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Gideon</property>
-    <!-- <property name="resizable">False</property> -->
+    <property name="default_height">600px</property>
+    <property name="default_width">320px</property>
+    <property name="allow-grow">False</property>
+    <property name="opacity">0.95</property>
+    <property name="icon">/usr/share/icons/gnome/scalable/categories/applications-science-symbolic.svg</property>
     <property name="decorated">False</property>
     <signal name="delete-event" handler="exit"/>
     <child>
       <object class="GtkGrid" id="grid">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="margin_left">5</property>
-        <property name="margin_right">5</property>
-        <property name="margin_top">5</property>
-        <property name="margin_bottom">5</property>
+        <!-- <property name="margin_left">5</property> -->
+        <!-- <property name="margin_right">5</property> -->
+        <!-- <property name="margin_top">5</property> -->
+        <!-- <property name="margin_bottom">5</property> -->
         <child>
           <object class="GtkBox" id="cmdBox">
             <property name="visible">True</property>
@@ -30,10 +34,10 @@
               <object class="GtkEntry" id="cmd">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="width_chars">45</property>
+                <!-- <property name="width_chars">45</property> -->
                 <property name="caps_lock_warning">False</property>
                 <property name="placeholder_text" translatable="yes">Enter command here...</property>
-                <property name="completion">entrycompletion1</property>
+                <!-- <property name="completion">entrycompletion1</property> -->
                 <property name="input_hints">GTK_INPUT_HINT_NO_SPELLCHECK | GTK_INPUT_HINT_NONE</property>
                 <signal name="activate" handler="processCmd" swapped="no"/>
                 <style>
@@ -43,9 +47,9 @@
                 </style>
               </object>
               <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
+                <property name="expand">True</property>
+                <!-- <property name="fill">True</property> -->
+                <property name="position">1</property>
               </packing>
             </child>
             <child>
@@ -60,7 +64,7 @@
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="position">1</property>
+                <property name="position">0</property>
               </packing>
             </child>
             <style>

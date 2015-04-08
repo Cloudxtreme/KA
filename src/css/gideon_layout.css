@@ -1,0 +1,32 @@
+@define-color gidBlack #1A1A1A;
+/*@define-color base_color #1A1A1A;*/
+
+GtkWindow {
+	border: 0px solid #fff;
+	padding: 0px;
+	margin: 0px;
+	background-image: none;
+	background-color: @gidBlack;
+}
+
+.wrapper {
+	border: 0px solid #fff;
+	margin: 0px;
+	margin-top: 0px;
+	padding: 0px;
+}
+GtkEntry {
+	color: white;
+	font-size: 15px;
+	padding: 8px 20px;
+	border: 0px solid;
+	background-image: none;
+	background-color: rgba(0,0,0, 0.37);
+	border-bottom: 1px solid white;
+	border-radius: 0px;
+	margin-bottom: 5px;
+}
+
+.statusLabel {
+	color: red;
+}

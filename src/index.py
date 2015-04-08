@@ -3,15 +3,14 @@ from pprint import pprint
 from routeCmd import fetchResponse
 from urllib.request import urlopen
 
-ENTER_KEY = 65288
-
 class GideonUI(Gtk.Window):
 	def __init__(self, gladeFile = './xml/gideon_layout.glade'):
-
+		Gtk.Window.__init__(self, title='foo')
 		self.gladeFile = gladeFile
 		self.builder = Gtk.Builder()
 		self.builder.add_from_file(self.gladeFile)
 		self.builder.connect_signals(Handlers)
+		self.initCSS()
 		self.window = self.builder.get_object("Window")
 		self.window.show_all()
 		self.el("processing").hide()
@@ -19,6 +18,16 @@ class GideonUI(Gtk.Window):
 		self.el("image").hide()
 		self.el("description").hide()
 		self.el("outlink").hide()
+
+	def initCSS(self, cssFile = './css/gideon_layout.css'):
+		self.style_provider = Gtk.CssProvider()
+		self.cssFile = cssFile;
+		self.style_provider.load_from_path(cssFile)
+		Gtk.StyleContext.add_provider_for_screen(
+			Gdk.Screen.get_default(),
+			self.style_provider,
+			Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+		)
 
 	def el(self, id):
 		return self.builder.get_object(id)
@@ -60,6 +69,8 @@ class Handlers:
 		Gtk.main_quit()
 
 	def processCmd(self):
+		if (UI.el("cmd").get_text()=="reload"):
+			return UI.style_provider.load_from_path(UI.cssFile)
 		print("processing a command!")
 		UI.el("processing").show()
 		UI.el("processing").start()
