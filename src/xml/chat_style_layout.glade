@@ -107,7 +107,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkBox" id="cmdbox">
+          <object class="GtkBox" id="cmdboxwrapper">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="margin_left">5</property>

@@ -1,0 +1,36 @@
+@define-color gidBlack #1A1A1A;
+/*@define-color base_color #1A1A1A;*/
+
+* {
+	background-image: none;
+	border-image: none;
+	border: 0px solid;
+	background-color: transparent;
+	border-radius: 0px;
+	color: white;
+}
+
+GtkWindow {
+	border: 0px solid #fff;
+	padding: 0px;
+	margin: 0px;
+	background-color: @gidBlack;
+}
+
+.cmd {
+	font-size: 15px;
+	padding: 8px 20px;
+	margin-bottom: 5px;
+}
+
+#content {
+	background-color: white;
+}
+
+.contentwrapper {
+	background-color: white;
+}
+
+.statuslabel {
+	color: red;
+}

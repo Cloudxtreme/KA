@@ -4,22 +4,23 @@ from routeCmd import fetchResponse
 from urllib.request import urlopen
 
 class GideonUI(Gtk.Window):
-	def __init__(self, gladeFile = './xml/gideon_layout.glade'):
+	def __init__(self, gladeFile = './xml/chat_style_layout.glade'):
 		Gtk.Window.__init__(self, title='foo')
 		self.gladeFile = gladeFile
 		self.builder = Gtk.Builder()
 		self.builder.add_from_file(self.gladeFile)
 		self.builder.connect_signals(Handlers)
 		self.initCSS()
-		self.window = self.builder.get_object("Window")
+		self.window = self.builder.get_object("window")
 		self.window.show_all()
-		self.el("processing").hide()
-		self.el("heading").hide()
-		self.el("image").hide()
-		self.el("description").hide()
-		self.el("outlink").hide()
+		self.el("process").hide()
+		# self.el("heading").hide()
+		# self.el("image").hide()
+		# self.el("description").hide()
+		# self.el("outlink").hide()
 
-	def initCSS(self, cssFile = './css/gideon_layout.css'):
+	def initCSS(self, cssFile = './css/chat_style_layout.css'):
+		# self.el("cmdboxwrapper").style.
 		self.style_provider = Gtk.CssProvider()
 		self.cssFile = cssFile;
 		self.style_provider.load_from_path(cssFile)
@@ -37,6 +38,7 @@ class GideonUI(Gtk.Window):
 		Gtk.main()
 
 	def pushResponse(self, heading = None, image = None, description = '', link = None):
+		return print("push response disabled!")
 		if not heading:
 			UI.el("heading").hide()
 		else:
@@ -64,16 +66,18 @@ class GideonUI(Gtk.Window):
 
 
 class Handlers:
-	def exit(self, *args):
+	def ondelete(self, *args):
 		print("oi, bye!")
 		Gtk.main_quit()
 
-	def processCmd(self):
+	def onactivate(self):
 		if (UI.el("cmd").get_text()=="reload"):
 			return UI.style_provider.load_from_path(UI.cssFile)
+		if (UI.el("cmd").get_text().startswith('>>')):
+			return print(eval(UI.el("cmd").get_text().lstrip('>')))
 		print("processing a command!")
-		UI.el("processing").show()
-		UI.el("processing").start()
+		UI.el("process").show()
+		UI.el("process").start()
 		response = fetchResponse(UI.el("cmd").get_text())
 		UI.pushResponse(**response)
 
