@@ -1,26 +1,27 @@
-from gi.repository import Gtk, Gdk, GdkPixbuf
-from pprint import pprint
-from routeCmd import fetchResponse
+import app
+from gi.repository import Gtk, Gdk, GdkPixbuf, GLib
+from utils import route_cmd
 from urllib.request import urlopen
 
-class GideonUI(Gtk.Window):
-	def __init__(self, gladeFile = './xml/chat_style_layout.glade'):
-		Gtk.Window.__init__(self, title='foo')
+class AppUI(Gtk.Window):
+	def __init__(self, gladeFile = './ui/layout.xml'):
+		Gtk.Window.__init__(self, title=app.name)
 		self.gladeFile = gladeFile
 		self.builder = Gtk.Builder()
 		self.builder.add_from_file(self.gladeFile)
 		self.builder.connect_signals(Handlers)
 		self.initCSS()
-		self.window = self.builder.get_object("window")
+		self.window = self.el("window")
+		window_hints = Gdk.WindowHints(6)
+		window_geometry = Gdk.Geometry()
+		window_geometry.min_height = 600
+		window_geometry.max_height = 720
+		window_geometry.min_width = 320
+		window_geometry.max_width = 320
+		self.window.set_geometry_hints(self.window, window_geometry, window_hints)
 		self.window.show_all()
-		self.el("process").hide()
-		# self.el("heading").hide()
-		# self.el("image").hide()
-		# self.el("description").hide()
-		# self.el("outlink").hide()
 
-	def initCSS(self, cssFile = './css/chat_style_layout.css'):
-		# self.el("cmdboxwrapper").style.
+	def initCSS(self, cssFile = './css/layout.css'):
 		self.style_provider = Gtk.CssProvider()
 		self.cssFile = cssFile;
 		self.style_provider.load_from_path(cssFile)
@@ -34,52 +35,30 @@ class GideonUI(Gtk.Window):
 		return self.builder.get_object(id)
 
 	def main(self):
-		print("3... 2... 1... We have ignition!")
+		app.logger.info("3... 2... 1... We have ignition!")
 		Gtk.main()
 
-	def pushResponse(self, heading = None, image = None, description = '', link = None):
-		return print("push response disabled!")
-		if not heading:
-			UI.el("heading").hide()
-		else:
-			UI.el("heading").set_markup(heading)
-			UI.el("heading").show()
-		if not image:
-			UI.el("image").hide()
-		else:
-			imageData = urlopen(image)
-			loader = GdkPixbuf.PixbufLoader()
-			loader.write(imageData.read())
-			loader.close()
-			UI.el("image").set_from_pixbuf(loader.get_pixbuf())
-			UI.el("image").show()
-		UI.el("description").set_markup(description)
-		UI.el("description").show()
-		if not link:
-			UI.el("outlink").hide()
-		else:
-			UI.el("outlink").set_uri(link)
-			UI.el("outlink").set_label("Read more at " + urllib.urlparse(link)[1])
-			UI.el("outlink").show()
-		UI.el("processing").stop()
-		UI.el("processing").hide()
+	def pushResponse(self, message, props = 'foo'):
+		self.el("contentbox").add(message)
+		self.el("contentbox").show_all()
+		self.el("process").stop()
+		app.logger.info(["command successfully processed", props])
 
 
 class Handlers:
-	def ondelete(self, *args):
-		print("oi, bye!")
+	def delete(self, *args):
+		app.logger.info("We are back to Earth. Signing off!")
 		Gtk.main_quit()
 
-	def onactivate(self):
-		if (UI.el("cmd").get_text()=="reload"):
+	def activate(self):
+		if (UI.el("cmd").get_text()=="!!reload"):
 			return UI.style_provider.load_from_path(UI.cssFile)
-		if (UI.el("cmd").get_text().startswith('>>')):
+		if (UI.el("cmd").get_text().startswith('>>>')):
 			return print(eval(UI.el("cmd").get_text().lstrip('>')))
-		print("processing a command!")
-		UI.el("process").show()
+		app.logger.info("processing a command!")
 		UI.el("process").start()
-		response = fetchResponse(UI.el("cmd").get_text())
-		UI.pushResponse(**response)
+		response = route_cmd.process(UI.el("cmd").get_text())
+		UI.pushResponse(response)
 
-UI = GideonUI()
+UI = AppUI()
 UI.main()

@@ -1,5 +1,5 @@
-@define-color gidBlack #1A1A1A;
-/*@define-color base_color #1A1A1A;*/
+@define-color app-black #1A1A1A;
+@define-color status-label-color #C5EFF7;
 
 * {
 	background-image: none;
@@ -14,7 +14,7 @@ GtkWindow {
 	border: 0px solid #fff;
 	padding: 0px;
 	margin: 0px;
-	background-color: @gidBlack;
+	background-color: @app-black;
 }
 
 .cmd {
@@ -23,14 +23,19 @@ GtkWindow {
 	margin-bottom: 5px;
 }
 
-#content {
-	background-color: white;
+.cmdbox {
+	background-color: alpha(white, 0.1);
 }
 
-.contentwrapper {
-	background-color: white;
+.statusbox {
+	border-top: 1px solid alpha(white, 0.3);
 }
 
 .statuslabel {
-	color: red;
+	padding: 11px 0px 8px 0px;
+	color: @status-label-color;
+}
+
+.contentgrid {
+	padding: 10px;
 }
