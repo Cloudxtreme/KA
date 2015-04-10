@@ -3,6 +3,7 @@ import re
 import imp
 import os
 import app
+import json
 
 SYSTEM_CMD_PREFIX = '!!'
 
@@ -11,6 +12,8 @@ commands = {
 	'user': {},
 	'system': {}
 }
+
+loaded_modules = {}
 
 class AddCmd:
 	@staticmethod
@@ -34,12 +37,14 @@ class AddCmd:
 AddCmd.core('google', '^google\s+(?P<query>.+)$', 'google')
 AddCmd.core('define', '^define\s+(?P<query>.+)$', 'define')
 AddCmd.core('wiki', '^wiki\s+(?P<query>.+)$', 'wiki')
-AddCmd.core('nudge', '^nudge\s+(?P<message>.+)\s+(?P<timeStyle>at|in)\s+(?P<time>.+)$', 'nudge')
-AddCmd.core('how to', '^how to .+', 'google')
+AddCmd.core('remind', '^remind\s+(?:me)?\s+(?P<message>.+)\s+(?P<timeStyle>at|in|on)\s+(?P<time>.+)$', 'remind')
+AddCmd.core('how to', '^(?P<query>how to .+)', 'google')
 AddCmd.core('what is', '^what is\s+(?P<query>\S+)$', 'define')
 AddCmd.core('mdn', '^mdn\s+(?P<query>.+)$', 'mdn')
 AddCmd.core('learn', '^learn\s+(?P<cmd>\S+)\s+(?P<definition>.+)$', 'learn')
-AddCmd.core('should I', '^should\s+I\s+(?P<query>.+or.+[^?])\?*$', 'choose')
+AddCmd.core('should', '^should\s+(?P<person>the\s+\w+|they|my\s+\w+|you|I|\w+)\s+(?P<query>.+)\?*$', 'choose')
+AddCmd.core('shouldn\'t', '^shouldn\'t\s+(?P<person>the\s+\w+|they|my\s+\w+|you|I|\w+)\s+(?P<query>.+)\?*$', 'choose')
+AddCmd.core('shouldnt', '^should\s+(?P<person>the\s+\w+|they|my\s+\w+|you|I|\w+)\s+(?P<query>.+)\?*$', 'choose')
 AddCmd.core('urban', '^urban\s+(?P<query>.+)', 'urban')
 AddCmd.core('hi gideon', '^hi gideon$', 'greet')
 AddCmd.core('joke', '^joke$', 'joke')
@@ -48,11 +53,15 @@ AddCmd.system('help', '^help', 'help')
 AddCmd.system('listcommands', '^listcommands$', 'listcommands')
 
 def load_cmd_module (name = 'chat', mod_type = 'core'):
+	mod_id = json.dumps(name, mod_type)
+	if mod_id in loaded_modules:
+		return loaded_modules[mod_id]
 	mod_info = None
 	module = None
 	try:
 		mod_info = imp.find_module(name, ['./plugins', os.path.join('./plugins', mod_type)])
 		module = imp.load_module(name, *mod_info)
+		loaded_modules[mod_id] = module
 	except Exception as e:
 		app.logger.error("Error occured while loading module " + name)
 		app.logger.debug(e)

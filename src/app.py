@@ -8,8 +8,10 @@ botname = 'Gideon'
 # sys internals, bitches
 
 import getpass
+from gi.repository import GLib
 
 username = getpass.getuser()
+username_safe = GLib.markup_escape_text(username)
 
 import logging
 def setup_custom_logger(name):

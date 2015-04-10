@@ -5,25 +5,23 @@ from utils.response_wrapper import ResponseWrap
 import random
 import app
 
-username = GLib.markup_escape_text(app.username)
-
 address_lines = [
-	'I found the following results for your query, ' + username,
-	username + ', here are some links',
-	'This is what I found, ' + username,
-	'Top Google hits just for you, ' + username
+	'I found the following results for your query, ' + app.username_safe,
+	app.username_safe + ', here are some links',
+	'This is what I found, ' + app.username_safe,
+	'Top Google hits just for you, ' + app.username_safe
 ]
 
 empty_query_answers = [
 	'Google what?',
-	'It\'s not like an empty search will give a lot of results, ' + username,
+	'It\'s not like an empty search will give a lot of results, ' + app.username_safe,
 	'I am not sure what exactly I have to look up',
 	'Google? Yes, it is awesome isn\'t it?'
 ]
 
 no_results = [
 	'I... can\'t find anything about that. Seriously.',
-	'Even my Google-fu failed, ' + username,
+	'Even my Google-fu failed, ' + app.username_safe,
 	'Damn! No results :('
 ]
 
