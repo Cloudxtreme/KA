@@ -1,0 +1,58 @@
+@define-color app-black #1A1A1A;
+@define-color status-label-color #C5EFF7;
+
+* {
+	background-image: none;
+	border-image: none;
+	border: 0px solid;
+	background-color: transparent;
+	border-radius: 0px;
+	color: white;
+}
+
+GtkWindow {
+	font-family: Lato;
+	border: 0px solid #fff;
+	padding: 0px;
+	margin: 0px;
+	background-color: @app-black;
+}
+
+.cmd {
+	font-size: 15px;
+	padding: 10px;
+	margin-bottom: 5px;
+}
+
+.process {
+	padding-right: 10px;
+	color: #68C3A3;
+	/*opacity: 0;*/
+}
+
+.cmdbox {
+	background-color: alpha(white, 0.1);
+}
+
+.statusbox {
+	border-top: 1px solid alpha(white, 0.3);
+}
+
+.statuslabel {
+	padding: 11px 0px 8px 0px;
+	color: @status-label-color;
+}
+
+.contentgrid {
+	padding: 10px;
+}
+
+.user-entered-cmd {
+	font-weight: bold;
+	color: #68C3A3;
+	padding: 10px;
+}
+
+.contentbox {
+	font: Lato 14px;
+}

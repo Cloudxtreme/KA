@@ -1,3 +1,5 @@
+/* This will soon use some kind of Transpiler-packager-creator-inator that I will make sometime */
+
 /* jslint esnext: true */
 /* jslint evil: true */
 var fs = require('fs');

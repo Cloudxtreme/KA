@@ -1,7 +1,7 @@
 from http.client import HTTPConnection, HTTPSConnection
 import urllib.parse
 
-def request(url, data={}, headers={}, method="GET"):
+def process(url, data={}, headers={}, method="GET"):
 
 	ua = 'Gedion Pluggable Personal Assistant v0.1 pre-alpha'
 
