@@ -7,6 +7,10 @@ botname = 'Gideon'
 
 # sys internals, bitches
 
+import getpass
+
+username = getpass.getuser()
+
 import logging
 def setup_custom_logger(name):
 	logFmt = logging.Formatter(fmt='%(asctime)s - %(levelname)s - %(module)s - %(message)s')

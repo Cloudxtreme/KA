@@ -11,6 +11,7 @@
 }
 
 GtkWindow {
+	font-family: Lato;
 	border: 0px solid #fff;
 	padding: 0px;
 	margin: 0px;
@@ -19,8 +20,14 @@ GtkWindow {
 
 .cmd {
 	font-size: 15px;
-	padding: 8px 20px;
+	padding: 10px;
 	margin-bottom: 5px;
+}
+
+.process {
+	padding-right: 10px;
+	color: #68C3A3;
+	/*opacity: 0;*/
 }
 
 .cmdbox {
@@ -38,4 +45,14 @@ GtkWindow {
 
 .contentgrid {
 	padding: 10px;
+}
+
+.user-entered-cmd {
+	font-weight: bold;
+	color: #68C3A3;
+	padding: 10px;
+}
+
+.contentbox {
+	font: Lato 14px;
 }

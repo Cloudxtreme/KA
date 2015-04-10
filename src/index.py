@@ -20,6 +20,7 @@ class AppUI(Gtk.Window):
 		window_geometry.max_width = 320
 		self.window.set_geometry_hints(self.window, window_geometry, window_hints)
 		self.window.show_all()
+		self.el("process").set_opacity(0)
 
 	def initCSS(self, cssFile = './css/layout.css'):
 		self.style_provider = Gtk.CssProvider()
@@ -38,10 +39,24 @@ class AppUI(Gtk.Window):
 		app.logger.info("3... 2... 1... We have ignition!")
 		Gtk.main()
 
+	def add_self_command(self, cmd):
+		if (cmd == ''):
+			return
+		lab = Gtk.Label(cmd)
+		lab.get_style_context().add_class("user-entered-cmd")
+		lab.set_line_wrap(True)
+		lab.set_alignment(0, 0)
+		self.el("contentbox").add(lab)
+		lab.set_visible(True)
+
+	def scroll_to_bottom(self):
+		vadjustment = UI.el("contentscroller").get_vadjustment()
+		vadjustment.set_value(vadjustment.get_upper())
+
 	def pushResponse(self, message, props = 'foo'):
 		self.el("contentbox").add(message)
 		self.el("contentbox").show_all()
-		self.el("process").stop()
+		UI.el("process").set_opacity(0)
 		app.logger.info(["command successfully processed", props])
 
 
@@ -51,14 +66,20 @@ class Handlers:
 		Gtk.main_quit()
 
 	def activate(self):
-		if (UI.el("cmd").get_text()=="!!reload"):
+		UI.el("process").set_opacity(0.8)
+		cmd = UI.el("cmd").get_text()
+		UI.add_self_command(cmd)
+		if (cmd=="!!reload"):
+			UI.el("process").set_opacity(0)
 			return UI.style_provider.load_from_path(UI.cssFile)
-		if (UI.el("cmd").get_text().startswith('>>>')):
-			return print(eval(UI.el("cmd").get_text().lstrip('>')))
+		if (cmd.startswith('>>>')):
+			UI.el("process").set_opacity(0)
+			return print(eval(cmd.lstrip('>')))
 		app.logger.info("processing a command!")
-		UI.el("process").start()
-		response = route_cmd.process(UI.el("cmd").get_text())
+		response = route_cmd.process(cmd)
 		UI.pushResponse(response)
+		UI.scroll_to_bottom()
 
 UI = AppUI()
+UI.add_self_command("Welcome!")
 UI.main()

@@ -102,7 +102,11 @@ def process(cmd = ''):
 			app.logger.error("module_obj was not found!")
 			app.logger.debug([cmd_definition, "command:" + cmd])
 			module_obj = load_cmd_module('boterror', 'core')
-		response = module_obj.process(cmd, cmd_definition['regex'].match(cmd).groupdict())
+		match_obj = cmd_definition['regex'].match(cmd)
+		if not match_obj:
+			response = module_obj.process(cmd)
+		else:
+			response = module_obj.process(cmd, **match_obj.groupdict())
 		app.logger.info([cmd_definition['module'], cmd_definition['category'], "returned", response])
 	else:
 		module_obj = load_cmd_module(name = 'chat', mod_type = 'core')

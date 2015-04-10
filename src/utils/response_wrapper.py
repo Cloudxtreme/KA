@@ -7,7 +7,7 @@ class ResponseWrap:
 		self.builder = Gtk.Builder()
 		self.builder.add_from_file(self.gladeFile)
 		if self.el("username"):
-			self.el("username").set_text(app.botname)
+			self.el("username").set_text(app.botname + ': ')
 
 	def el(self, id):
 		return self.builder.get_object(id)
