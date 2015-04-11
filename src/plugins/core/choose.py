@@ -28,7 +28,7 @@ quick_answers = [
 
 person_prefixes = [
 	'I say... ',
-	'How about, '
+	'How about, ',
 	'I think '
 ]
 
@@ -75,8 +75,8 @@ def make_choice(person, query):
 	else:
 		choice = chose_from_list(person, arr)
 
-	if choice.lower().startswith('should ' + person):
-		choice = choice.replace('should ' + person, '', 1)
+	if choice.lower().startswith('should ' + person.lower()):
+		choice = re.sub('(?i)' + re.escape('should ' + person), '', choice)
 
 	return map_personal(person, choice, is_quick)
 
