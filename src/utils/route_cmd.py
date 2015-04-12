@@ -25,7 +25,7 @@ class AddCmd:
 		}
 	@staticmethod
 	def system(starts, regex, module):
-		commands['system'][starts] = {
+		commands['system'][SYSTEM_CMD_PREFIX + starts] = {
 			'regex': re.compile(regex),
 			'module': module,
 			'category': 'system'

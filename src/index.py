@@ -66,8 +66,10 @@ class Handlers:
 		Gtk.main_quit()
 
 	def activate(self):
+		cmd = UI.el("cmd").get_text().strip()
+		if not cmd:
+			return
 		UI.el("process").set_opacity(0.8)
-		cmd = UI.el("cmd").get_text()
 		UI.add_self_command(cmd)
 		if (cmd=="!!reload"):
 			UI.el("process").set_opacity(0)
@@ -78,6 +80,7 @@ class Handlers:
 		app.logger.info("processing a command!")
 		response = route_cmd.process(cmd)
 		UI.pushResponse(response)
+		UI.window.show_all()
 		UI.scroll_to_bottom()
 
 UI = AppUI()

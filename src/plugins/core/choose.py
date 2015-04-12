@@ -1,8 +1,16 @@
 import random
 import app
 import re
+import json
 from utils.response_wrapper import ResponseWrap
 
+repeated_query_answers = [
+	'I remember answering that already.',
+	'My answer won\'t change, ' + app.username_safe + '!',
+	'Duplicate question?',
+	'Didn\'t like my answer first time?',
+	'Why ask the same thing again?'
+]
 
 yes_no_answers = [
 	'Yeah, sure ' + app.username_safe + ' :)',
@@ -64,6 +72,13 @@ def chose_from_list(person, query):
 
 def make_choice(person, query):
 	arr = re.split('\s+or\s+', query)
+	arr.sort()
+
+	query_id = json.dumps([person, arr])
+	if (query_id in mem):
+		return random.choice(repeated_query_answers)
+	else:
+		mem[query_id] = True
 	
 	if len(arr) == 1:
 		return random.choice(yes_no_answers)
