@@ -95,7 +95,7 @@ def get_cmd_definition (cmd = ''):
 	else:
 		return False
 
-def process(cmd = ''):
+def process(cmd = '', appUI = None):
 	mod_name = None
 	response = None
 	cmd_definition = None

@@ -1,41 +1,36 @@
-#gideon (WIP)
+#Gideon (WIP)
 
-gideon is a virtual assistant written in python who can be taught commands easily. It is meant to be easy to write plugins for. I (and @argentum47) are new to python and are exploring the language as we write this.
+Gideon is a virtual assistant written in Python who can be taught commands easily. More complex commands in the form of plugins can also be written.
 
-###Present state:
+###Present state
 
-- the google command works (I think)
-- empty command returns some random message
-- some basic command processing structure works
-- GTK-CSS is next
+Pre-alpha stage. Some commands like `google`, `define`, `should I do this... or that` etc. work. Need to write more plugins, and improve overall app structure. Some UI improvement too.
+
+To use, run the `start` file in the root folder. Installing the `Lato` font will make it look more pretty. Requires Python 3.4 and GTK 3.10 to work (most recent distros will work out of the box, like Ubuntu 14.04 etc.).
+
+Windows and MacOSX are not supported. You're welcome :)
 
 ###Plugins
 
-Plugins are dynamically loaded on command processing, and must be registered first. The `process` command from the loaded module is called with the first argument as the raw command from input, and the rest of the commands are the `dictresult` of executing the regex (on the command) passed at plugin registration.
+Plugins are dynamically loaded on command processing, and must be registered first. The `process` command from the loaded module is called with the first argument as the raw command from input, and the rest of the commands are the `dictresult` of executing a regex (on the command) passed at plugin registration.
 
-The process must return a dict itself containing the `description` key with markup to show to the user, and optionally a `heading`, and `image` url, and an `link` as a "Read more at..." link to display.
+The return value of the function must be a `GtkWidget` or one of it's descendant (most likely `GtkGrid`) which will be appended to the content `GtkViewport`.
 
 ###Todo
 
-- Maintain session history
-- GTK-CSS (cc @argentum47)
-- make more plugins work
-	- the define plugin using the (terrible) wiktionary api needs a parser to work
-	- urban
-	- nudge (no idea how to implement)
+- autostart
+- app indicator
+- make more plugins 
+	- remind (no idea how to implement)
 	- learn (and forget)
+	- tweet?
+	- email updates?
 	- etc. etc.
+	- listcommands, clear history, etc.
 - use it
 
 ###Stuff
 
-This was just a random thought which came to me. And I wanted to use Python on something (had heard lots of good stuff about it, all rightly so). The high-level user API and commands are inspired from Zirak's SO Chatbot
+This was just a random thought which came to me. And I wanted to use Python on something (had heard lots of good stuff about it, all rightly so). The high-level user API and commands are inspired from Zirak's SO Chatbot at https://github.com/Zirak/SO-Chatbot.
 
-good night
-
- - awalGarg
- - argentum47 (writing it on your behalf :P)
-
-###License
-
-I unno. WTFPL maybe? @argentum47 decide between WTFPL and MIT please?
+License - MIT

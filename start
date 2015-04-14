@@ -1,0 +1,6 @@
+#!/bin/bash
+changeDir () {
+	cd `dirname $0`/src/
+}
+changeDir
+`which python3` index.py
