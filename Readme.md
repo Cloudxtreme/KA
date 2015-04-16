@@ -4,7 +4,7 @@ Gideon is a virtual assistant written in Python who can be taught commands easil
 
 ###Present state
 
-Pre-alpha stage. Some commands like `google`, `define`, `should I do this... or that` etc. work. Need to write more plugins, and improve overall app structure. Some UI improvement too.
+Pre-alpha stage. Some commands like `google`, `define`, `should I do this... or that`, `urban foo bar` etc. work. Need to write more plugins, and improve overall app structure. Some UI improvement too.
 
 To use, run the `start` file in the root folder. Installing the `Lato` font will make it look more pretty. Requires Python 3.4 and GTK 3.10 to work (most recent distros will work out of the box, like Ubuntu 14.04 etc.).
 
