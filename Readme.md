@@ -1,6 +1,6 @@
-#Gideon (WIP)
+#KA (WIP)
 
-Gideon is a virtual assistant written in Python who can be taught commands easily. More complex commands in the form of plugins can also be written.
+KA is a virtual assistant written in Python who can be taught commands easily. More complex commands in the form of plugins can also be written.
 
 ###Present state
 

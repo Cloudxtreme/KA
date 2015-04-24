@@ -46,7 +46,6 @@ AddCmd.core('should', '^should\s+(?P<person>the\s+\w+|they|my\s+\w+|you|I|\w+)\s
 AddCmd.core('shouldn\'t', '^shouldn\'t\s+(?P<person>the\s+\w+|they|my\s+\w+|you|I|\w+)\s+(?P<query>.+)\?*$', 'choose')
 AddCmd.core('shouldnt', '^shouldnt\s+(?P<person>the\s+\w+|they|my\s+\w+|you|I|\w+)\s+(?P<query>.+)\?*$', 'choose')
 AddCmd.core('urban', '^urban\s+(?P<query>.+)', 'urban')
-AddCmd.core('hi gideon', '^hi gideon$', 'greet')
 AddCmd.core('joke', '^joke$', 'joke')
 
 AddCmd.system('help', '^help', 'help')

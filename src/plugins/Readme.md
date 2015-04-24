@@ -1,10 +1,10 @@
-#Gideon Plugins
+#KA Plugins
 
-This directory contains default plugins used in Gideon.
+This directory contains default plugins used in KA.
 
 - Core plugins
  - Plugins like `google`, `wiki`, `define` etc.
 - System plugins
- - Gideon meta plugins like `listcommands` etc.
+ - KA meta plugins like `listcommands` etc.
 - Debug
- - Plugins I will use to debug problems in Gideon. Require enabling debugging.
+ - Plugins I will use to debug problems in KA. Require enabling debugging.

@@ -7,7 +7,7 @@
     <property name="vexpand">True</property>
     <property name="default_width">400</property>
     <property name="default_height">720</property>
-    <property name="icon">../res/gideon_icon.ico</property>
+    <property name="icon">../res/app_icon.ico</property>
     <property name="skip_taskbar_hint">False</property>
     <property name="decorated">False</property>
     <property name="has_resize_grip">False</property>

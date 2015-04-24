@@ -68,7 +68,7 @@ class AppUI(Gtk.Window):
 		app.logger.info(["command successfully processed", props])
 
 	def createIndicator(self):
-		icon_image = os.path.abspath('./res/gideon_icon.ico')
+		icon_image = os.path.abspath('./res/app_icon.ico')
 		self.ind = appindicator.Indicator.new(app.name, icon_image, appindicator.IndicatorCategory.APPLICATION_STATUS)
 		self.ind.set_status(appindicator.IndicatorStatus.ACTIVE)
 		self.ind.set_label(app.name, "100%")

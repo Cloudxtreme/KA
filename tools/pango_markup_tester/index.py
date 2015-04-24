@@ -14,7 +14,7 @@ class Handlers:
 
 class PangoUI(Gtk.Window):
 	def __init__(self, gladeFile = './layout.xml'):
-		Gtk.Window.__init__(self, title='Pango Markup Tester | Gideon Tools')
+		Gtk.Window.__init__(self, title='Pango Markup Tester | KA Tools')
 		self.gladeFile = gladeFile
 		self.builder = Gtk.Builder()
 		self.builder.add_from_file(self.gladeFile)

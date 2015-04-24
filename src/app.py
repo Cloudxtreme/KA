@@ -1,8 +1,8 @@
 # hello python
-name = 'Gideon'
+name = 'KA'
 version = 'v0.1'
 authors = ('Awal Garg', 'argentum47')
-botname = 'Gideon'
+botname = 'KA'
 
 
 # sys internals, bitches
