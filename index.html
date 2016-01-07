@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <title>Ka by awalGarg</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Ka</h1>
+        <h2>personal assistant for developers and super users</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/awalGarg/KA/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/awalGarg/KA/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/awalGarg/KA" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+<a id="ka-wip" class="anchor" href="#ka-wip" aria-hidden="true"><span class="octicon octicon-link"></span></a>KA (WIP)</h1>
+
+<h1>
+<a id="this-was-just-a-prototype-i-will-start-working-on-a-complete-rewrite-soon-so-this-repo-currently-holds-crap" class="anchor" href="#this-was-just-a-prototype-i-will-start-working-on-a-complete-rewrite-soon-so-this-repo-currently-holds-crap" aria-hidden="true"><span class="octicon octicon-link"></span></a>This was just a prototype. I will start working on a complete rewrite soon, so this repo currently holds crap.</h1>
+
+<p>KA is a virtual assistant written in Python who can be taught commands easily. More complex commands in the form of plugins can also be written.</p>
+
+<h3>
+<a id="present-state" class="anchor" href="#present-state" aria-hidden="true"><span class="octicon octicon-link"></span></a>Present state</h3>
+
+<p>Pre-alpha stage. Some commands like <code>google</code>, <code>define</code>, <code>should I do this... or that</code>, <code>urban foo bar</code> etc. work. Need to write more plugins, and improve overall app structure. Some UI improvement too.</p>
+
+<p>To use, run the <code>start</code> file in the root folder. Installing the <code>Lato</code> font will make it look more pretty. Requires Python 3.4 and GTK 3.10 to work (most recent distros will work out of the box, like Ubuntu 14.04 etc.).</p>
+
+<p>Windows and MacOSX are not supported. You're welcome :)</p>
+
+<h3>
+<a id="plugins" class="anchor" href="#plugins" aria-hidden="true"><span class="octicon octicon-link"></span></a>Plugins</h3>
+
+<p>Plugins are dynamically loaded on command processing, and must be registered first. The <code>process</code> command from the loaded module is called with the first argument as the raw command from input, and the rest of the commands are the <code>dictresult</code> of executing a regex (on the command) passed at plugin registration.</p>
+
+<p>The return value of the function must be a <code>GtkWidget</code> or one of it's descendant (most likely <code>GtkGrid</code>) which will be appended to the content <code>GtkViewport</code>.</p>
+
+<h3>
+<a id="todo" class="anchor" href="#todo" aria-hidden="true"><span class="octicon octicon-link"></span></a>Todo</h3>
+
+<ul>
+<li>autostart</li>
+<li>app indicator</li>
+<li>make more plugins 
+
+<ul>
+<li>remind (no idea how to implement)</li>
+<li>learn (and forget)</li>
+<li>tweet?</li>
+<li>email updates?</li>
+<li>etc. etc.</li>
+<li>listcommands, clear history, etc.</li>
+</ul>
+</li>
+<li>use it</li>
+</ul>
+
+<h3>
+<a id="stuff" class="anchor" href="#stuff" aria-hidden="true"><span class="octicon octicon-link"></span></a>Stuff</h3>
+
+<p>This was just a random thought which came to me. And I wanted to use Python on something (had heard lots of good stuff about it, all rightly so). The high-level user API and commands are inspired from Zirak's SO Chatbot at <a href="https://github.com/Zirak/SO-Chatbot">https://github.com/Zirak/SO-Chatbot</a>.</p>
+
+<p>License - MIT</p>
+      </section>
+    </div>
+
+    
+  </body>
+</html>
