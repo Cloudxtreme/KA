@@ -1,3 +1,5 @@
+# NOTE: This is under a complete rewrite. The code here was written a loooong time ago, and I wanted it to "just work". It probably doesn't even work now.
+
 #KA (WIP)
 
 KA is a virtual assistant written in Python who can be taught commands easily. More complex commands in the form of plugins can also be written.
